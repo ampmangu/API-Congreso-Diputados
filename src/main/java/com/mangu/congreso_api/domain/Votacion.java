@@ -2,9 +2,10 @@ package com.mangu.congreso_api.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.time.LocalDate;
-import java.util.Set;
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Objects;
+import java.util.Set;
 
 
 @Entity(name = "votacion")
@@ -124,4 +125,29 @@ public class Votacion {
         this.votacionVotosDetallados = votacionVotosDetallados;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Votacion votacion = (Votacion) o;
+        return Objects.equals(id, votacion.id) && Objects.equals(votacionNumber, votacion.votacionNumber) && Objects.equals(fecha, votacion.fecha) && Objects.equals(titulo, votacion.titulo) && Objects.equals(textoexpediente, votacion.textoexpediente) && Objects.equals(titulosubgrupo, votacion.titulosubgrupo) && Objects.equals(textosubgrupo, votacion.textosubgrupo) && Objects.equals(sesion, votacion.sesion) && Objects.equals(votacionVotosResumidos, votacion.votacionVotosResumidos) && Objects.equals(votacionVotosDetallados, votacion.votacionVotosDetallados);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, votacionNumber, fecha, titulo, textoexpediente, titulosubgrupo, textosubgrupo, sesion, votacionVotosResumidos, votacionVotosDetallados);
+    }
+
+    @Override
+    public String toString() {
+        return "Votacion{" +
+                "id=" + id +
+                ", votacionNumber=" + votacionNumber +
+                ", fecha=" + fecha +
+                ", titulo='" + titulo + '\'' +
+                ", textoexpediente='" + textoexpediente + '\'' +
+                ", titulosubgrupo='" + titulosubgrupo + '\'' +
+                ", textosubgrupo='" + textosubgrupo + '\'' +
+                '}';
+    }
 }
