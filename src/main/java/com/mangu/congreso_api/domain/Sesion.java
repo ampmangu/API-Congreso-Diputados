@@ -1,7 +1,7 @@
 package com.mangu.congreso_api.domain;
 
-import java.util.Set;
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity(name = "sesion")
@@ -16,7 +16,8 @@ public class Sesion {
     private Long sesionNumber;
 
     @OneToMany(mappedBy = "sesion", fetch = FetchType.EAGER)
-    private Set<Votacion> sesionVotacions;
+    //TODO: If you ever find a way to filter the entire object if this property is empty, COOL.
+    private List<Votacion> votaciones;
 
     public Integer getId() {
         return id;
@@ -34,12 +35,12 @@ public class Sesion {
         this.sesionNumber = sesionNumber;
     }
 
-    public Set<Votacion> getSesionVotacions() {
-        return sesionVotacions;
+    public List<Votacion> getVotaciones() {
+        return votaciones;
     }
 
-    public void setSesionVotacions(final Set<Votacion> sesionVotacions) {
-        this.sesionVotacions = sesionVotacions;
+    public void setVotaciones(final List<Votacion> votaciones) {
+        this.votaciones = votaciones;
     }
 
 }
