@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -32,5 +33,11 @@ public class VotesController {
                 byFecha.stream()
                         .filter(votacion -> votacion.getVotacionVotosDetallados() != null && !votacion.getVotacionVotosDetallados().isEmpty())
                         .collect(Collectors.toList()));
+    }
+
+    @GetMapping(value = "/votes/byId", produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<Votacion> getVotesById(@RequestParam String id) {
+        Optional<Votacion> byId = votacionRepository.findById(Long.parseLong(id));
+        return ResponseEntity.of(byId);
     }
 }

@@ -1,5 +1,6 @@
 package com.mangu.congreso_api.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Votacion {
     private Integer votacionNumber;
 
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha;
 
     @Column(nullable = false, columnDefinition = "text")
