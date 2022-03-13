@@ -45,6 +45,7 @@ public class Votacion {
     private Set<VotosResumido> votacionVotosResumidos;
 
     @OneToMany(mappedBy = "votacion", fetch = FetchType.EAGER)
+    @OrderBy(value = "voto DESC")
     private Set<VotosDetallado> votacionVotosDetallados;
 
     public Long getId() {
