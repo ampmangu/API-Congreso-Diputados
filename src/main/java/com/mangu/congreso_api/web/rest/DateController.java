@@ -1,5 +1,6 @@
 package com.mangu.congreso_api.web.rest;
 
+import com.mangu.congreso_api.domain.dto.DateDto;
 import com.mangu.congreso_api.repos.FechasViewRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +26,10 @@ public class DateController {
     }
 
     @GetMapping("/dates")
-    public ResponseEntity<List<String>> getAllDates() {
+    public ResponseEntity<List<DateDto>> getAllDates() {
         return ResponseEntity.ok(
-                this.fechasViewRepository.findAll().stream().map(f -> f.getFecha().toString()).collect(Collectors.toList()));
+                this.fechasViewRepository.findAll().stream().map(f ->
+                                new DateDto.Builder().date(f.getFecha().toString()).legislatura(f.getLegislatura()).build())
+                        .collect(Collectors.toList()));
     }
 }

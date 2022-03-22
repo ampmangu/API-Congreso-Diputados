@@ -21,6 +21,9 @@ public class Votacion {
     private Integer votacionNumber;
 
     @Column(nullable = false)
+    private String legislatura;
+
+    @Column(nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha;
 
@@ -36,7 +39,7 @@ public class Votacion {
     @Column(nullable = false, columnDefinition = "text")
     private String textosubgrupo;
 
-    @ManyToOne(targetEntity = Sesion.class,fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Sesion.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "sesion_id", nullable = false)
     @JsonIgnore
     private Sesion sesion;
@@ -62,6 +65,14 @@ public class Votacion {
 
     public void setVotacionNumber(final Integer votacionNumber) {
         this.votacionNumber = votacionNumber;
+    }
+
+    public String getLegislatura() {
+        return legislatura;
+    }
+
+    public void setLegislatura(String legislatura) {
+        this.legislatura = legislatura;
     }
 
     public LocalDate getFecha() {
@@ -133,12 +144,12 @@ public class Votacion {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Votacion votacion = (Votacion) o;
-        return Objects.equals(id, votacion.id) && Objects.equals(votacionNumber, votacion.votacionNumber) && Objects.equals(fecha, votacion.fecha) && Objects.equals(titulo, votacion.titulo) && Objects.equals(textoexpediente, votacion.textoexpediente) && Objects.equals(titulosubgrupo, votacion.titulosubgrupo) && Objects.equals(textosubgrupo, votacion.textosubgrupo) && Objects.equals(sesion, votacion.sesion) && Objects.equals(votacionVotosResumidos, votacion.votacionVotosResumidos) && Objects.equals(votacionVotosDetallados, votacion.votacionVotosDetallados);
+        return Objects.equals(id, votacion.id) && Objects.equals(votacionNumber, votacion.votacionNumber) && Objects.equals(legislatura, votacion.legislatura) && Objects.equals(fecha, votacion.fecha) && Objects.equals(titulo, votacion.titulo) && Objects.equals(textoexpediente, votacion.textoexpediente) && Objects.equals(titulosubgrupo, votacion.titulosubgrupo) && Objects.equals(textosubgrupo, votacion.textosubgrupo) && Objects.equals(sesion, votacion.sesion) && Objects.equals(votacionVotosResumidos, votacion.votacionVotosResumidos) && Objects.equals(votacionVotosDetallados, votacion.votacionVotosDetallados);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, votacionNumber, fecha, titulo, textoexpediente, titulosubgrupo, textosubgrupo, sesion, votacionVotosResumidos, votacionVotosDetallados);
+        return Objects.hash(id, votacionNumber, legislatura, fecha, titulo, textoexpediente, titulosubgrupo, textosubgrupo, sesion, votacionVotosResumidos, votacionVotosDetallados);
     }
 
     @Override
@@ -146,11 +157,15 @@ public class Votacion {
         return "Votacion{" +
                 "id=" + id +
                 ", votacionNumber=" + votacionNumber +
+                ", legislatura='" + legislatura + '\'' +
                 ", fecha=" + fecha +
                 ", titulo='" + titulo + '\'' +
                 ", textoexpediente='" + textoexpediente + '\'' +
                 ", titulosubgrupo='" + titulosubgrupo + '\'' +
                 ", textosubgrupo='" + textosubgrupo + '\'' +
+                ", sesion=" + sesion +
+                ", votacionVotosResumidos=" + votacionVotosResumidos +
+                ", votacionVotosDetallados=" + votacionVotosDetallados +
                 '}';
     }
 }

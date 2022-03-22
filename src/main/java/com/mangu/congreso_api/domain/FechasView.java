@@ -17,6 +17,8 @@ public class FechasView {
 
     private LocalDate fecha;
 
+    private String legislatura;
+
     public String getId() {
         return id;
     }
@@ -33,24 +35,33 @@ public class FechasView {
         this.fecha = fecha;
     }
 
+    public String getLegislatura() {
+        return legislatura;
+    }
+
+    public void setLegislatura(String legislatura) {
+        this.legislatura = legislatura;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FechasView that = (FechasView) o;
-        return Objects.equals(id, that.id) && Objects.equals(fecha, that.fecha);
+        return Objects.equals(id, that.id) && Objects.equals(fecha, that.fecha) && Objects.equals(legislatura, that.legislatura);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fecha);
+        return Objects.hash(id, fecha, legislatura);
     }
 
     @Override
     public String toString() {
         return "FechasView{" +
                 "id='" + id + '\'' +
-                ", fecha='" + fecha + '\'' +
+                ", fecha=" + fecha +
+                ", legislatura='" + legislatura + '\'' +
                 '}';
     }
 }
