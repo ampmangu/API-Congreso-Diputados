@@ -31,7 +31,7 @@ public class GroupController {
 
     @GetMapping(value = "/groups", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Set<String>> getGroups() {
-        Set<String> collect = votoGrupoRepository.findAll().stream().map(votoGrupo -> votoGrupo.getGrupo()).collect(Collectors.toSet());
+        Set<String> collect = votoGrupoRepository.findAll().stream().map(VotoGrupo::getGrupo).collect(Collectors.toSet());
         return ResponseEntity.ok(collect);
     }
 }

@@ -31,7 +31,7 @@ public class VotesController {
                 .findByFecha(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         return ResponseEntity.ok(
                 byFecha.stream()
-                        .filter(votacion -> votacion.getVotacionVotosDetallados() != null && !votacion.getVotacionVotosDetallados().isEmpty())
+                        .filter(votacion -> votacion.getVotacionVotosResumidos() != null && !votacion.getVotacionVotosResumidos().isEmpty())
                         .collect(Collectors.toList()));
     }
 
