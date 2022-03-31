@@ -1,6 +1,7 @@
 package com.mangu.congreso_api.web.rest;
 
 import com.mangu.congreso_api.domain.VotoGrupo;
+import com.mangu.congreso_api.domain.dto.GroupDto;
 import com.mangu.congreso_api.repos.VotoGrupoRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.Tuple;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -30,8 +32,16 @@ public class GroupController {
     }
 
     @GetMapping(value = "/groups", produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Set<String>> getGroups() {
-        Set<String> collect = votoGrupoRepository.findAll().stream().map(VotoGrupo::getGrupo).collect(Collectors.toSet());
-        return ResponseEntity.ok(collect);
+    public ResponseEntity<List<GroupDto>> getGroups() {
+        List<GroupDto> results = new ArrayList<>();
+
+        List<Tuple> all = votoGrupoRepository.findGrupoLegislatura();
+        all.forEach(group -> results.add(
+                new GroupDto.Builder()
+                        .legislatura(group.get(0, String.class))
+                        .grupo(group.get(1, String.class))
+                        .build()
+        ));
+        return ResponseEntity.ok(results);
     }
 }
