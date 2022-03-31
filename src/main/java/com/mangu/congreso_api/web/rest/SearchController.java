@@ -2,10 +2,6 @@ package com.mangu.congreso_api.web.rest;
 
 import com.mangu.congreso_api.domain.dto.ResultDto;
 import com.mangu.congreso_api.repos.VotacionRepository;
-import com.mangu.congreso_api.repos.VotosDetalladoRepository;
-import org.springdoc.api.annotations.ParameterObject;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,14 +22,13 @@ public class SearchController {
     private VotacionRepository votacionRepository;
 
 
-    public SearchController(VotacionRepository votacionRepository, VotosDetalladoRepository votosDetalladoRepository) {
+    public SearchController(VotacionRepository votacionRepository) {
         this.votacionRepository = votacionRepository;
     }
 
 
     @GetMapping("/search")
-    public ResponseEntity<List<ResultDto>> getSearchResults(@RequestParam String textSearch, @ParameterObject @PageableDefault(size = 50)
-            Pageable pageable) {
+    public ResponseEntity<List<ResultDto>> getSearchResults(@RequestParam String textSearch) {
         List<ResultDto> results = new ArrayList<>();
         List<Tuple> all = votacionRepository.findSearch(textSearch);
         all.forEach(iVotacion -> results.add(new ResultDto.Builder()
