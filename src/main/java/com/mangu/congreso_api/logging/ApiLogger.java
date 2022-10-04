@@ -1,37 +1,41 @@
 package com.mangu.congreso_api.logging;
 
+import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
-
 public class ApiLogger implements HandlerInterceptor {
-    private static final Logger logger = LoggerFactory
-            .getLogger(ApiLogger.class);
 
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String requestId = UUID.randomUUID().toString();
-        log(request, response, requestId);
-        long startTime = System.currentTimeMillis();
-        request.setAttribute("startTime", startTime);
-        request.setAttribute("requestId", requestId);
-        return true;
-    }
+  private static final Logger logger = LoggerFactory
+      .getLogger(ApiLogger.class);
 
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        long startTime = (Long) request.getAttribute("startTime");
-        long endTime = System.currentTimeMillis();
-        long executeTime = endTime - startTime;
-        logger.info("requestId {}, Handle :{} , request take time: {}", request.getAttribute("requestId"), handler, executeTime);
-    }
+  @Override
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+      Object handler) {
+    String requestId = UUID.randomUUID().toString();
+    log(request, response, requestId);
+    long startTime = System.currentTimeMillis();
+    request.setAttribute("startTime", startTime);
+    request.setAttribute("requestId", requestId);
+    return true;
+  }
 
-    private void log(HttpServletRequest request, HttpServletResponse response, String requestId) {
-        logger.info("requestId {}, host {}  HttpMethod: {}, URI : {}", requestId, request.getHeader("host"),
-                request.getMethod(), request.getRequestURI());
-    }
+  @Override
+  public void afterCompletion(HttpServletRequest request, HttpServletResponse response,
+      Object handler, Exception ex) {
+    long startTime = (Long) request.getAttribute("startTime");
+    long endTime = System.currentTimeMillis();
+    long executeTime = endTime - startTime;
+    logger.info("requestId {}, Handle :{} , request take time: {}",
+        request.getAttribute("requestId"), handler, executeTime);
+  }
+
+  private void log(HttpServletRequest request, HttpServletResponse response, String requestId) {
+    logger.info("requestId {}, host {}  HttpMethod: {}, URI : {}", requestId,
+        request.getHeader("host"),
+        request.getMethod(), request.getRequestURI());
+  }
 }

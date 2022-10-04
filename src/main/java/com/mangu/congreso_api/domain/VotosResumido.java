@@ -1,92 +1,97 @@
 package com.mangu.congreso_api.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "votos_resumido", schema = "public")
 public class VotosResumido {
 
-    @Id
-    @Column(nullable = false, updatable = false)
-    private Long id;
+  @Id
+  @Column(nullable = false, updatable = false)
+  private Long id;
 
-    @Column(nullable = false, columnDefinition = "text")
-    private String grupo;
+  @Column(nullable = false, columnDefinition = "text")
+  private String grupo;
 
-    @Column(nullable = false, columnDefinition = "text")
-    private String aFavor;
+  @Column(nullable = false, columnDefinition = "text")
+  private String aFavor;
 
-    @Column(nullable = false, columnDefinition = "text")
-    private String enContra;
+  @Column(nullable = false, columnDefinition = "text")
+  private String enContra;
 
-    @Column(nullable = false, columnDefinition = "text")
-    private String abstencion;
+  @Column(nullable = false, columnDefinition = "text")
+  private String abstencion;
 
-    @Column(nullable = false, columnDefinition = "text")
-    private String nsnc;
+  @Column(nullable = false, columnDefinition = "text")
+  private String nsnc;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "votacion_id", nullable = false)
-    @JsonIgnore
-    private Votacion votacion;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "votacion_id", nullable = false)
+  @JsonIgnore
+  private Votacion votacion;
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(final Long id) {
-        this.id = id;
-    }
+  public void setId(final Long id) {
+    this.id = id;
+  }
 
-    public String getGrupo() {
-        return grupo;
-    }
+  public String getGrupo() {
+    return grupo;
+  }
 
-    public void setGrupo(final String grupo) {
-        this.grupo = grupo;
-    }
+  public void setGrupo(final String grupo) {
+    this.grupo = grupo;
+  }
 
-    public String getAFavor() {
-        return aFavor;
-    }
+  public String getAFavor() {
+    return aFavor;
+  }
 
-    public void setAFavor(final String aFavor) {
-        this.aFavor = aFavor;
-    }
+  public void setAFavor(final String aFavor) {
+    this.aFavor = aFavor;
+  }
 
-    public String getEnContra() {
-        return enContra;
-    }
+  public String getEnContra() {
+    return enContra;
+  }
 
-    public void setEnContra(final String enContra) {
-        this.enContra = enContra;
-    }
+  public void setEnContra(final String enContra) {
+    this.enContra = enContra;
+  }
 
-    public String getAbstencion() {
-        return abstencion;
-    }
+  public String getAbstencion() {
+    return abstencion;
+  }
 
-    public void setAbstencion(final String abstencion) {
-        this.abstencion = abstencion;
-    }
+  public void setAbstencion(final String abstencion) {
+    this.abstencion = abstencion;
+  }
 
-    public String getNsnc() {
-        return nsnc;
-    }
+  public String getNsnc() {
+    return nsnc;
+  }
 
-    public void setNsnc(final String nsnc) {
-        this.nsnc = nsnc;
-    }
+  public void setNsnc(final String nsnc) {
+    this.nsnc = nsnc;
+  }
 
-    public Votacion getVotacion() {
-        return votacion;
-    }
+  public Votacion getVotacion() {
+    return votacion;
+  }
 
-    public void setVotacion(final Votacion votacion) {
-        this.votacion = votacion;
-    }
+  public void setVotacion(final Votacion votacion) {
+    this.votacion = votacion;
+  }
 
 }

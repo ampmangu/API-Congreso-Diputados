@@ -11,4 +11,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories("com.mangu.congreso_api.repos")
 @EnableTransactionManagement
 public class DomainConfig {
+
 }

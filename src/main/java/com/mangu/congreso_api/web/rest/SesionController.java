@@ -19,21 +19,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v2")
 public class SesionController {
-    private static final int DEFAULT_PAGE_SIZE = 50;
 
-    private SesionRepository sesionRepository;
-    private final Logger logger = LoggerFactory.getLogger(SesionController.class);
+  private static final int DEFAULT_PAGE_SIZE = 50;
 
-    public SesionController(SesionRepository sesionRepository) {
-        this.sesionRepository = sesionRepository;
-    }
+  private final SesionRepository sesionRepository;
+  private final Logger logger = LoggerFactory.getLogger(SesionController.class);
 
-    @GetMapping("/sesions")
-    public ResponseEntity<Page<Sesion>> getAllSesions(@ParameterObject @PageableDefault(size = DEFAULT_PAGE_SIZE)
-                                                      @SortDefault.SortDefaults({
-                                                              @SortDefault(sort = "sesionNumber", direction = Sort.Direction.ASC)
-                                                      }) Pageable pageable) {
-        Page<Sesion> page = sesionRepository.findAll(pageable);
-        return ResponseEntity.ok().body(page);
-    }
+  public SesionController(SesionRepository sesionRepository) {
+    this.sesionRepository = sesionRepository;
+  }
+
+  @GetMapping("/sesions")
+  public ResponseEntity<Page<Sesion>> getAllSesions(
+      @ParameterObject @PageableDefault(size = DEFAULT_PAGE_SIZE)
+      @SortDefault.SortDefaults({
+          @SortDefault(sort = "sesionNumber", direction = Sort.Direction.ASC)
+      }) Pageable pageable) {
+    Page<Sesion> page = sesionRepository.findAll(pageable);
+    return ResponseEntity.ok().body(page);
+  }
 }
