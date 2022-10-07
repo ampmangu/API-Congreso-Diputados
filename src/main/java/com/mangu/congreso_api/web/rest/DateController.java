@@ -1,7 +1,7 @@
 package com.mangu.congreso_api.web.rest;
 
 import com.mangu.congreso_api.domain.dto.DateDto;
-import com.mangu.congreso_api.repos.FechasViewRepository;
+import com.mangu.congreso_api.repository.FechasViewRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;

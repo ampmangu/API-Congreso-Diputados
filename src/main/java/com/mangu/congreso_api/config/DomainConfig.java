@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EntityScan("com.mangu.congreso_api.domain")
-@EnableJpaRepositories("com.mangu.congreso_api.repos")
+@EnableJpaRepositories("com.mangu.congreso_api.repository")
 @EnableTransactionManagement
 public class DomainConfig {
 

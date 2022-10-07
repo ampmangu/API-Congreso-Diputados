@@ -5,7 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.mangu.congreso_api.domain.VotoGrupo;
-import com.mangu.congreso_api.repos.VotoGrupoRepository;
+import com.mangu.congreso_api.repository.VotoGrupoRepository;
 import java.time.LocalDate;
 import java.util.List;
 import org.hamcrest.Matchers;

@@ -1,7 +1,7 @@
 package com.mangu.congreso_api.web.rest;
 
 import com.mangu.congreso_api.domain.dto.ResultDto;
-import com.mangu.congreso_api.repos.VotacionRepository;
+import com.mangu.congreso_api.repository.VotacionRepository;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;

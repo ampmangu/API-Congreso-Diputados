@@ -6,8 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.mangu.congreso_api.domain.Votacion;
 import com.mangu.congreso_api.domain.VotosDetallado;
-import com.mangu.congreso_api.repos.VotacionRepository;
-import com.mangu.congreso_api.repos.VotosDetalladoRepository;
+import com.mangu.congreso_api.repository.VotacionRepository;
+import com.mangu.congreso_api.repository.VotosDetalladoRepository;
 import java.util.List;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;

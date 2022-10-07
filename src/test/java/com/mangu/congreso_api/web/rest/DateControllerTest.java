@@ -5,7 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.mangu.congreso_api.domain.FechasView;
-import com.mangu.congreso_api.repos.FechasViewRepository;
+import com.mangu.congreso_api.repository.FechasViewRepository;
 import java.time.LocalDate;
 import java.util.List;
 import org.hamcrest.Matchers;

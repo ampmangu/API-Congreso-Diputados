@@ -4,7 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.mangu.congreso_api.repos.VotacionRepository;
+import com.mangu.congreso_api.repository.VotacionRepository;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;

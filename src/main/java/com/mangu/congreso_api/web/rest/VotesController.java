@@ -4,7 +4,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.mangu.congreso_api.domain.Votacion;
 import com.mangu.congreso_api.domain.dto.MemberDto;
-import com.mangu.congreso_api.repos.VotacionRepository;
+import com.mangu.congreso_api.repository.VotacionRepository;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

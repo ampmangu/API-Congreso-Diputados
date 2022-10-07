@@ -4,8 +4,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.mangu.congreso_api.domain.VotosDetallado;
 import com.mangu.congreso_api.domain.dto.ProfileDto;
-import com.mangu.congreso_api.repos.VotacionRepository;
-import com.mangu.congreso_api.repos.VotosDetalladoRepository;
+import com.mangu.congreso_api.repository.VotacionRepository;
+import com.mangu.congreso_api.repository.VotosDetalladoRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;

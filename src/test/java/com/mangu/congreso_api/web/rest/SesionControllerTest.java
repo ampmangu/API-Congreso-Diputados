@@ -5,7 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.mangu.congreso_api.domain.Sesion;
-import com.mangu.congreso_api.repos.SesionRepository;
+import com.mangu.congreso_api.repository.SesionRepository;
 import java.util.List;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;

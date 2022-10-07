@@ -4,7 +4,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.mangu.congreso_api.domain.VotoGrupo;
 import com.mangu.congreso_api.domain.dto.GroupDto;
-import com.mangu.congreso_api.repos.VotoGrupoRepository;
+import com.mangu.congreso_api.repository.VotoGrupoRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
