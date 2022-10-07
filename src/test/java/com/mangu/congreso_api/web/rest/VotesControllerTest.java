@@ -18,6 +18,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -31,6 +32,7 @@ class VotesControllerTest {
   @Autowired
   MockMvc mockMvc;
 
+  @WithMockUser(value = "admin")
   @Test
   void testFindAllByDate() throws Exception {
     List<Votacion> results = List.of(Votacion.builder()
@@ -47,6 +49,7 @@ class VotesControllerTest {
     ;
   }
 
+  @WithMockUser(value = "admin")
   @Test
   void testFindById() throws Exception {
     Votacion votacion = Votacion.builder()
