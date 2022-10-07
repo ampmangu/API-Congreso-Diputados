@@ -4,7 +4,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.mangu.congreso_api.domain.Votacion;
 import com.mangu.congreso_api.domain.dto.MemberDto;
-import com.mangu.congreso_api.repos.VotacionRepository;
+import com.mangu.congreso_api.repository.VotacionRepository;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,11 +12,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "*", maxAge = 4800)
 @RestController
 @RequestMapping("/api/v2")
 public class VotesController {
@@ -28,6 +31,7 @@ public class VotesController {
   }
 
   @GetMapping(value = "/votes/byDate", produces = APPLICATION_JSON_VALUE)
+  @PreAuthorize("isAuthenticated()")
   public ResponseEntity<List<Votacion>> getVotesByDate(@RequestParam String date) {
     List<Votacion> byFecha = votacionRepository
         .findByFecha(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
@@ -38,6 +42,7 @@ public class VotesController {
             .collect(Collectors.toList()));
   }
 
+  @PreAuthorize("isAuthenticated()")
   @GetMapping(value = "/votes/byId", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<Votacion> getVotesById(@RequestParam String id) {
     Optional<Votacion> byId = votacionRepository.findById(Long.parseLong(id));

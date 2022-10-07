@@ -5,7 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.mangu.congreso_api.domain.Sesion;
-import com.mangu.congreso_api.repos.SesionRepository;
+import com.mangu.congreso_api.repository.SesionRepository;
 import java.util.List;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -17,6 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -30,6 +31,7 @@ class SesionControllerTest {
   @Autowired
   MockMvc mockMvc;
 
+  @WithMockUser(value = "admin")
   @Test
   void testSesionOk() throws Exception {
     List<Sesion> sesions = List.of(Sesion.builder().sesionNumber(123L).legislatura("XI").build(),

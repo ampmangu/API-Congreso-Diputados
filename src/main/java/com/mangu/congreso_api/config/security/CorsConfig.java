@@ -1,4 +1,4 @@
-package com.mangu.congreso_api.config;
+package com.mangu.congreso_api.config.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -9,8 +9,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 public class CorsConfig implements WebMvcConfigurer {
 
+  //todo deprecated?
   @Override
   public void addCorsMappings(CorsRegistry registry) {
-    registry.addMapping("/**");
+//    registry.addMapping("/**");
   }
 }

@@ -20,3 +20,7 @@ spring:
             non_contextual_creation: true
         id:
           new_generator_mappings: true
+mangu:
+  app:
+    jwtSecret: NHjhrxsoANZVc6kPG3fUxV9NXQBoAHOUF7N0kbvQ2zO8OpdK8kTMHM1biyFBQUi2aFlqWvD/e8OYmuU/m4GroQ==
+    jwtExpirationMs: 76300000
