@@ -7,7 +7,6 @@ import com.mangu.congreso_api.domain.dto.ProfileDto;
 import com.mangu.congreso_api.repository.VotacionRepository;
 import com.mangu.congreso_api.repository.VotosDetalladoRepository;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,7 +37,7 @@ public class ProfileController {
       return ResponseEntity.notFound().build();
     }
     List<String> groups =
-        profileList.stream().map(VotosDetallado::getGrupo).distinct().collect(Collectors.toList());
+        profileList.stream().map(VotosDetallado::getGrupo).distinct().toList();
     List<String> legislatura = votacionRepository.findListLegislaturaByDiputado(name);
     return ResponseEntity.ok(new ProfileDto.Builder()
         .name(profileList.get(0).getDiputado()).withGroups(groups).withLegislaturas(legislatura)

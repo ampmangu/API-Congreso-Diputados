@@ -3,7 +3,7 @@ package com.mangu.congreso_api.services;
 import com.mangu.congreso_api.config.security.UserDetailsImpl;
 import com.mangu.congreso_api.domain.security.User;
 import com.mangu.congreso_api.repository.UserRepository;
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

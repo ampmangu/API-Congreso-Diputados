@@ -3,7 +3,6 @@ package com.mangu.congreso_api.web.rest;
 import com.mangu.congreso_api.domain.dto.DateDto;
 import com.mangu.congreso_api.repository.FechasViewRepository;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +32,6 @@ public class DateController {
         this.fechasViewRepository.findAll().stream().map(f ->
                 new DateDto.Builder().date(f.getFecha().toString()).legislatura(f.getLegislatura())
                     .build())
-            .collect(Collectors.toList()));
+            .toList());
   }
 }

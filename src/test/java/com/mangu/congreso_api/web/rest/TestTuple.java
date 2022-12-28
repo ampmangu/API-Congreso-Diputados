@@ -1,9 +1,9 @@
 package com.mangu.congreso_api.web.rest;
 
+import jakarta.persistence.Tuple;
+import jakarta.persistence.TupleElement;
 import java.util.Arrays;
 import java.util.List;
-import javax.persistence.Tuple;
-import javax.persistence.TupleElement;
 
 public class TestTuple implements Tuple {
 
@@ -54,8 +54,8 @@ public class TestTuple implements Tuple {
   public boolean equals(Object obj) {
     if (obj == this) {
       return true;
-    } else if (obj instanceof Tuple) {
-      return Arrays.equals(a, ((Tuple) obj).toArray());
+    } else if (obj instanceof Tuple tuple) {
+      return Arrays.equals(a, tuple.toArray());
     } else {
       return false;
     }

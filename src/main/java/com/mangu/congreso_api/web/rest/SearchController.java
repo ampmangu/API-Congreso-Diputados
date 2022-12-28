@@ -2,11 +2,11 @@ package com.mangu.congreso_api.web.rest;
 
 import com.mangu.congreso_api.domain.dto.ResultDto;
 import com.mangu.congreso_api.repository.VotacionRepository;
+import jakarta.persistence.Tuple;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Tuple;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;

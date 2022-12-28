@@ -5,10 +5,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import com.mangu.congreso_api.domain.VotoGrupo;
 import com.mangu.congreso_api.domain.dto.GroupDto;
 import com.mangu.congreso_api.repository.VotoGrupoRepository;
+import jakarta.persistence.Tuple;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import javax.persistence.Tuple;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,7 +32,7 @@ public class GroupController {
   public ResponseEntity<List<VotoGrupo>> getVotesByGroup(@RequestParam String group) {
     List<VotoGrupo> collect = votoGrupoRepository.findAllByOrderByFecha().stream()
         .filter(votoGrupo -> votoGrupo.getGrupo().replaceAll("\\s", "").equalsIgnoreCase(group))
-        .collect(Collectors.toList());
+        .toList();
     return ResponseEntity.ok(collect);
   }
 
