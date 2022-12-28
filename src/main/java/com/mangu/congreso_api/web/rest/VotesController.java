@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,7 +38,7 @@ public class VotesController {
         byFecha.stream()
             .filter(votacion -> votacion.getVotacionVotosResumidos() != null
                 && !votacion.getVotacionVotosResumidos().isEmpty())
-            .collect(Collectors.toList()));
+            .toList());
   }
 
   @PreAuthorize("isAuthenticated()")
