@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*", maxAge = 4800)
@@ -26,12 +27,24 @@ public class DateController {
   }
 
   @PreAuthorize("isAuthenticated()")
-  @GetMapping("/dates")
+  @GetMapping("/dates/")
   public ResponseEntity<List<DateDto>> getAllDates() {
     return ResponseEntity.ok(
-        this.fechasViewRepository.findAll().stream().map(f ->
-                new DateDto.Builder().date(f.getFecha().toString()).legislatura(f.getLegislatura())
+        this.fechasViewRepository.findAll().stream().map(fechasViewResult ->
+                DateDto.builder().date(fechasViewResult.getFecha().toString())
+                    .legislatura(fechasViewResult.getLegislatura())
                     .build())
             .toList());
+  }
+
+  @PreAuthorize("isAuthenticated()")
+  @GetMapping("/dates")
+  public ResponseEntity<List<DateDto>> getAllDatesByLegislatura(@RequestParam String legislatura) {
+    return ResponseEntity.ok(
+        this.fechasViewRepository.findByLegislatura(legislatura).stream()
+            .map(fechasViewResult -> DateDto.builder().date(fechasViewResult.getFecha().toString())
+                .legislatura(fechasViewResult.getLegislatura())
+                .build()).toList()
+    );
   }
 }

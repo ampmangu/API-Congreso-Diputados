@@ -1,5 +1,6 @@
 package com.mangu.congreso_api.web.rest;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -40,9 +41,22 @@ class DateControllerTest {
         FechasView.builder().id("2").fecha(LocalDate.now().minusDays(1L)).legislatura("XIV")
             .build());
     Mockito.when(fechasViewRepository.findAll()).thenReturn(fechasViewList);
-    mockMvc.perform(get("/api/v2/dates")).andExpect(status().isOk())
+    mockMvc.perform(get("/api/v2/dates/")).andExpect(status().isOk())
         .andExpect(jsonPath("$[0].legislatura", Matchers.is("XIII")))
         .andExpect(jsonPath("$[1].legislatura", Matchers.is("XIV")))
     ;
+  }
+
+  @WithMockUser(value = "admin")
+  @Test
+  void testGetAllDatesByLegislatura() throws Exception {
+    List<FechasView> fechasViewList = List.of(
+        FechasView.builder().id("2").fecha(LocalDate.now().minusDays(1L)).legislatura("XIV")
+            .build()
+        , FechasView.builder().legislatura("XIV").id("3").fecha(LocalDate.now().minusDays(1))
+            .build());
+    Mockito.when(fechasViewRepository.findByLegislatura(any())).thenReturn(fechasViewList);
+    mockMvc.perform(get("/api/v2/dates?legislatura=XIV")).andExpect(status().isOk())
+        .andExpect(jsonPath("$[0].legislatura", Matchers.is("XIV")));
   }
 }
