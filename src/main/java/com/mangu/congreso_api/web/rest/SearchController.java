@@ -33,7 +33,7 @@ public class SearchController {
   public ResponseEntity<List<ResultDto>> getSearchResults(@RequestParam String textSearch) {
     List<ResultDto> results = new ArrayList<>();
     List<Tuple> all = votacionRepository.findSearch(textSearch);
-    all.forEach(iVotacion -> results.add(new ResultDto.Builder()
+    all.forEach(iVotacion -> results.add(ResultDto.builder()
         .id(iVotacion.get(0, BigInteger.class).longValue())
         .legislatura(iVotacion.get(1, String.class))
         .fecha(iVotacion.get(2, Date.class).toString())

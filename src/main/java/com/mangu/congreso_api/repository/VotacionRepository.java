@@ -16,7 +16,7 @@ public interface VotacionRepository extends JpaRepository<Votacion, Long> {
   @Query(value = "select v.id as id, v.legislatura as legislatura, v.fecha as fecha, v.titulo as titulo, v.textoexpediente as textoexpediente from votacion v where v.textoexpediente like %:search% or v.titulo like %:search% order by fecha desc", nativeQuery = true)
   List<Tuple> findSearch(@Param("search") String search);
 
-  @Query(value = "select distinct(vd.diputado) as diputado, vd.grupo as grupo, v.legislatura as legislatura from votacion v inner join votos_detallado vd on v.id = vd.votacion_id", nativeQuery = true)
+  @Query(value = "select distinct(vd.diputado) as diputado, vd.grupo as grupo, string_agg(distinct v.legislatura, ', ') as legislatura from votacion v inner join votos_detallado vd on v.id = vd.votacion_id group by vd.diputado, vd.grupo", nativeQuery = true)
   List<Tuple> findMembers();
 
   @Query(value = "select distinct(v.legislatura) from votacion v join votos_detallado vd on vd.votacion_id = v.id where vd.diputado = :diputado", nativeQuery = true)

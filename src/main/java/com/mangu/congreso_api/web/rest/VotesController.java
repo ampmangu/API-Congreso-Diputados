@@ -5,11 +5,14 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import com.mangu.congreso_api.domain.Votacion;
 import com.mangu.congreso_api.domain.dto.MemberDto;
 import com.mangu.congreso_api.repository.VotacionRepository;
+import jakarta.persistence.Tuple;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,15 +51,15 @@ public class VotesController {
     return ResponseEntity.of(byId);
   }
 
+  @PreAuthorize("isAuthenticated()")
   @GetMapping(value = "/votes/members", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<List<MemberDto>> getMembersByLegislatura() {
     List<MemberDto> results = new ArrayList<>();
-//        List<Tuple> all = votacionRepository.findMembers();
-//        all.forEach();
-//        all.forEach(member -> {
-//            MemberDto member
-//        });
-
+    votacionRepository.findMembers().forEach(member -> results.add(MemberDto.builder()
+        .nombre(member.get(0, String.class))
+        .grupo(member.get(1, String.class))
+        .legislaturas(member.get(2, String.class))
+        .build()));
     return ResponseEntity.ok(results);
   }
 }

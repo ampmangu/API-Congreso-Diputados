@@ -64,4 +64,16 @@ class VotesControllerTest {
         .andExpect(jsonPath("$.fecha", Matchers.containsString("2013-04-18")));
 
   }
+
+  @WithMockUser(value = "admin")
+  @Test
+  void testFindMembers() throws Exception{
+    Mockito.when(votacionRepository.findMembers()).thenReturn(
+        List.of(new TestTuple(new Object[]{"Abad Pérez, Juan Antonio", "GP", "X"}),
+            new TestTuple(new Object[]{"Ábalos Meco, José Luis",	"GS", "X, XI, XII, XIII, XIV"}))
+    );
+    mockMvc.perform(get("/api/v2/votes/members"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$", Matchers.hasSize(2)));
+  }
 }

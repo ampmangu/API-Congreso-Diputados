@@ -1,7 +1,9 @@
 package com.mangu.congreso_api.domain.dto;
 
 import java.util.Objects;
+import lombok.Builder;
 
+@Builder
 public class ResultDto {
 
   private Long id;
@@ -94,45 +96,4 @@ public class ResultDto {
         '}';
   }
 
-  public static class Builder {
-
-    protected Long id;
-
-    protected String legislatura;
-
-    protected String fecha;
-
-    protected String titulo;
-
-    protected String textoexpediente;
-
-    public Builder id(Long id) {
-      this.id = id;
-      return this;
-    }
-
-    public Builder legislatura(String legislatura) {
-      this.legislatura = legislatura;
-      return this;
-    }
-
-    public Builder fecha(String fecha) {
-      this.fecha = fecha;
-      return this;
-    }
-
-    public Builder titulo(String titulo) {
-      this.titulo = titulo;
-      return this;
-    }
-
-    public Builder textoexpediente(String textoexpediente) {
-      this.textoexpediente = textoexpediente;
-      return this;
-    }
-
-    public ResultDto build() {
-      return new ResultDto(id, legislatura, fecha, titulo, textoexpediente);
-    }
-  }
 }
